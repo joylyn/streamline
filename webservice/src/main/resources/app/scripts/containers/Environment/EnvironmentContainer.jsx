@@ -152,7 +152,9 @@ class EnvironmentCards extends Component {
         <div className="service-box environment-box" data-id={namespace.id} ref={(ref) => this.nameSpaceRef = ref}>
           <div className="service-head clearfix">
             <h4 className="pull-left no-margin" title={namespace.name}>{Utils.ellipses(namespace.name, 15)}</h4>
-              <div className="pull-right">
+              {namespace.readonly ?
+              '' :
+              (<div className="pull-right">
                 <DropdownButton noCaret title={ellipseIcon} id="dropdown" bsStyle="link" className="dropdown-toggle" data-stest="environment-actions">
                   <MenuItem  disabled={!permission}  onClick={this.onActionClick.bind(this, "edit/")} data-stest="edit-environment">
                     <i className="fa fa-pencil"></i>
@@ -170,7 +172,8 @@ class EnvironmentCards extends Component {
                     &nbsp;Delete
                   </MenuItem>
                 </DropdownButton>
-              </div>
+              </div>)
+              }
           </div>
           {(this.checkRefId(namespace.id))
             ? <div className="service-components">
